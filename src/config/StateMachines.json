@@ -1,0 +1,23 @@
+{
+  "CHANGECTN": {
+    "id": "FORM",
+    "initial": "start",
+    "context": {
+      "retries": 0
+    },
+    "states": {
+      "start": {
+        "entry": ["log"],
+        "on": {
+          "SUBMIT": "sucess"
+        }
+      },
+      "sucess": {
+        "type": "final"
+      }
+    },
+    "actions": {
+      "log": "console.log('Hello')"
+    }
+  }
+}
