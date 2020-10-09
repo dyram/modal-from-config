@@ -19,12 +19,13 @@ deploy:
   artifacts:
     paths:
       - /build
-    expire_in: 1 day 
-test:
-  stage: test
-  image: node
-  script:
-    - echo "Testing App"
-    - npm install
-    - CI=true npm test
-    - echo "Test successfully!"
+    expire_in: 1 day
+
+# test:
+#   stage: test
+#   image: node
+#   script:
+#     - echo "Testing App"
+#     - npm install
+#     - CI=true npm test
+#     - echo "Test successfully!"
