@@ -25,7 +25,7 @@
     "eject": "react-scripts eject"
   },
   "publishConfig": {
-  "@ivoyant-wip:registry":"https://gitlab.com/api/v4/projects/21625465/packages/npm/"
+  "registry":"https://gitlab.com/api/v4/projects/21625465/packages/npm/"
 },
   "browserslist": [
     ">0.2%",
