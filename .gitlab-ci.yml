@@ -8,7 +8,7 @@ build:
   script: 
     - ls -l
     - echo "Start building App"
-    - npm install --loglevel verbose
+    - npm install
     - npm run build
     - echo "Build successfully!"
     - ls -l
