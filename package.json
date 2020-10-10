@@ -24,14 +24,14 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "publishConfig": {
+  "@foo:registry":"https://gitlab.com/api/v4/projects/21625465/packages/npm/"
+},
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "publishConfig": {
-  "@foo:registry":"https://gitlab.com/api/v4/projects/21625465/packages/npm/"
-}
+  ]
 
 }
