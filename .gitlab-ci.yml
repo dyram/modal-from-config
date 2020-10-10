@@ -3,7 +3,7 @@ stages:
   - deploy
 
 before_script: 
-  - npm set registry http://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
+  - npm set registry http://gitlab.com/api/v4/projects/${CI_PROJECT_ID}
   - npm i
 
 build:
@@ -19,14 +19,12 @@ build:
       - ./build
     expire_in: 1 day
 
-
 deploy:
   stage: deploy
   image: node
   script:
     - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" > .npmrc
     - npm whoami
-    - npm i
     - npm publish --verbose
   artifacts:
     paths:
