@@ -19,8 +19,7 @@ deploy:
   stage: deploy
   image: node
   script:
-    - npm set registry http://gitlab.com/api/v4/projects/${CI_PROJECT_ID}
-    - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" > .npmrc
+    - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}:_authToken=${CI_JOB_TOKEN}" > .npmrc
     - npm i
     - npm publish --verbose
   artifacts:
