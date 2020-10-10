@@ -7,7 +7,7 @@ build:
   image: node
   script: 
     - echo "Start building App"
-    - npm install
+    - npm install --loglevel verbose
     - npm build
     - echo "Build successfully!"
 
