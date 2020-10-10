@@ -20,7 +20,7 @@ deploy:
   image: node
   script:
     - npm config set registry https//gitlab.com/api/v4/projects/${CI_PROJECT_ID}
-    - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}:_authToken=${CI_JOB_TOKEN}" > .npmrc
+    - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}:_authToken=${CI_JOB_TOKEN}" > /root/.npmrc
     - npm config ls -l
     - ls -l
     - npm publish --verbose
