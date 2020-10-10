@@ -10,15 +10,6 @@ build:
     - npm install
     - npm run build
     - echo "Build successfully!"
-  artifacts:
-    paths:
-      - ./build
-    expire_in: 1 day
-
-deploy:
-  stage: deploy
-  image: node
-  script:
     - npm config set registry https//gitlab.com/api/v4/projects/${CI_PROJECT_ID}
     - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" > /root/.npmrc
     - cat /root/.npmrc
@@ -26,8 +17,22 @@ deploy:
     - npm publish --verbose
   artifacts:
     paths:
-      - /
+      - ./build
     expire_in: 1 day
+
+# deploy:
+#   stage: deploy
+#   image: node
+#   script:
+#     - npm config set registry https//gitlab.com/api/v4/projects/${CI_PROJECT_ID}
+#     - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" > /root/.npmrc
+#     - cat /root/.npmrc
+#     - npm config ls -l
+#     - npm publish --verbose
+#   artifacts:
+#     paths:
+#       - /
+#     expire_in: 1 day
 
 # test:
   #   - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
