@@ -29,5 +29,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "publishConfig": {
+  "@foo:registry":"https://gitlab.com/api/v4/projects/21625465/packages/npm/"
+}
+
 }
