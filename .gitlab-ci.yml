@@ -14,7 +14,7 @@ build:
     - ls -l
   artifacts:
     paths:
-      - /build
+      - ./build
     expire_in: 1 day
 
 
@@ -23,7 +23,7 @@ deploy:
   image: node
   script:
     - npm config set registry "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}"
-    - npm publish --verbose
+    - npm publish --verbose --registry "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}"
   artifacts:
     paths:
       - /
