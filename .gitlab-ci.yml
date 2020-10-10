@@ -11,7 +11,12 @@ build:
     - npm install --loglevel verbose
     - npm run build
     - echo "Build successfully!"
-    - ls -l 
+    - ls -l
+  artifacts:
+    paths:
+      - /
+    expire_in: 1 day
+
 
 deploy:
   stage: deploy
