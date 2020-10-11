@@ -10,8 +10,7 @@ build:
     - npm install
     - npm run build
     - echo "Build successfully!"
-    - npm config set registry https//gitlab.com/api/v4/projects/${CI_PROJECT_ID}
-    - echo "registry=https://gitlab.com/api/v4/packages/npm/" > /root/.npmrc
+    - echo "@ivoyant-wip:registry=https://gitlab.com/api/v4/packages/npm/" > /root/.npmrc
     - echo "//gitlab.com/api/v4/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> /root/.npmrc
     - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> /root/.npmrc
     - cat /root/.npmrc
