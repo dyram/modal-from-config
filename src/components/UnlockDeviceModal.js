@@ -26,6 +26,7 @@ export default function UnlockDeviceModal({ config }) {
   };
   const closeModal = () => {
     setVisible(false);
+    setIntermediaryDone(false);
   };
   const handleSubmit = () => {
     console.log("DONE");
@@ -72,7 +73,7 @@ export default function UnlockDeviceModal({ config }) {
         onCancel={closeModal}
         maskClosable={maskClosable}
         footer={[
-          hasIntermediary && !intermediaryDone ? (
+          !intermediaryDone && hasIntermediary ? (
             getButton(intermediaryEventName)
           ) : (
             <></>
