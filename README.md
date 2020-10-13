@@ -1,2 +1,3 @@
-# change-ctn
+# Modal
 
+Modal rendered from a config file.
