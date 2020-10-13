@@ -1,6 +1,6 @@
 {
-  "CHANGECTN": {
-    "id": "FORM",
+  "UNLOCK": {
+    "id": "SENDCODE",
     "initial": "start",
     "context": {
       "retries": 0
@@ -9,10 +9,15 @@
       "start": {
         "entry": ["log"],
         "on": {
-          "SUBMIT": "sucess"
+          "SEND_CODE": "done"
         }
       },
-      "sucess": {
+      "done": {
+        "on": {
+          "DONE": "close"
+        }
+      },
+      "close": {
         "type": "final"
       }
     },

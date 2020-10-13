@@ -6,8 +6,10 @@
   "main": "src/index.js",
   "dependencies": {
     "@ant-design/icons": "4.2.2",
+    "@craco/craco": "^5.7.0",
     "antd": "4.6.6",
     "antd-form-builder": "2.1.1",
+    "craco-less": "^1.17.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-scripts": "3.4.3",
@@ -19,19 +21,18 @@
     "typescript": "3.8.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test --env=jsdom",
+    "eject": "craco eject"
   },
   "publishConfig": {
-  "@ivoyant-wip:registry":"https://gitlab.com/api/v4/projects/21625465/packages/npm/"
-},
+    "@ivoyant-wip:registry": "https://gitlab.com/api/v4/projects/21625465/packages/npm/"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
   ]
-
 }

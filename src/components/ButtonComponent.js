@@ -1,5 +1,5 @@
 import React from "react";
-import "antd/dist/antd.css";
+import "antd/dist/antd.less";
 import { Button } from "antd";
 import { MessageBus } from "../MessageBus.js";
 import shortid from "shortid";
@@ -15,7 +15,7 @@ const ButtonComponent = ({ config }) => {
 
   return (
     <Button key={id} type={type} onClick={onClick}>
-      {name}
+      {name.toUpperCase()}
     </Button>
   );
 };

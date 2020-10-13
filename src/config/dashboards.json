@@ -1,208 +1,35 @@
 {
   "components": {
-    "change-ctn-stepper": {
-      "type": "StepperComponent",
+    "unlock-sim": {
+      "type": "UnlockDeviceModal",
       "params": {
-        "nextStepEvent": "CHANGECTN.INCREMENT",
-        "prevStepEvent": "CHANGECTN.DECREMENT",
-        "resetEvent": "CHANGECTN.RESET",
-        "direction": "horizontal"
-      },
-      "childComponents": [
-        { "id": "step1", "ref": "step1" },
-        { "id": "step2", "ref": "step2" },
-        { "id": "step3", "ref": "step3" }
-      ]
-    },
-    "step1": {
-      "type": "StepComponent",
-      "params": {
-        "title": "Generate Code",
-        "description": "Generate Code desc",
+        "hasIntermediary": true,
+        "intermediaryEvent": "UNLOCK.SENDCODE",
+        "intermediaryEventName": "sendCode",
+        "intermediarySuccessMessage": "Code has been sent to your mobile 777-7777-7777",
+        "doneEvent": "UNLOCK.DONE",
+        "modalTitle": "Unlock Device",
+        "modalText": "Are you sure you want to send a code to unlock your device?",
+        "maskClosable": false,
+        "okText": "Done",
         "buttons": [
           {
+            "identifier": "sendCode",
             "type": "primary",
-            "name": "Next",
-            "clickSub": ["CHANGECTN.INCREMENT", "CHANGECTN.SUBMIT"]
-          }
-        ]
-      },
-      "childComponents": [{ "id": "change-ctn-form", "ref": "change-ctn-form" }]
-    },
-    "step2": {
-      "type": "StepComponent",
-      "params": {
-        "title": "Payment",
-        "description": "Payment desc",
-        "buttons": [
-          {
-            "type": "primary",
-            "name": "Previous",
-            "clickSub": ["CHANGECTN.DECREMENT"]
+            "name": "Send Code",
+            "clickSub": ["UNLOCK.SENDCODE"]
           },
           {
+            "identifier": "done",
             "type": "primary",
-            "name": "Next",
-            "clickSub": ["CHANGECTN.INCREMENT", "CHANGECTN.PAYMENT"]
+            "name": "Done",
+            "clickSub": ["UNLOCK.DONE"]
           }
         ]
       },
-      "childComponents": [{ "id": "payment-form", "ref": "payment-form" }]
-    },
-    "step3": {
-      "type": "StepComponent",
-      "params": {
-        "title": "Generate Code",
-        "description": "Generate Code desc",
-        "buttons": [
-          {
-            "type": "primary",
-            "name": "Close",
-            "clickSub": ["CHANGECTN.RESET"]
-          }
-        ]
-      },
-      "childComponents": [{ "id": "confirmation", "ref": "confirmation" }]
-    },
-    "change-ctn-form": {
-      "type": "FormComponent",
-      "params": {
-        "layout": "horizontal",
-        "formMeta": {
-          "columns": 1,
-          "initialValues":{"carrier":"Cricket","activityFee":15.99},
-          "fields": [
-            {
-              "key": "carrier",
-              "label": "Carrier",
-              "disabled": true
-            },
-            {
-              "key": "zipCode",
-              "label": "Zip Code",
-              "required": true,
-              "message": "Zip Code is required",
-              "widget": "number"
-            },
-            {
-              "key": "activityFee",
-              "label": "Activity Fee",
-              "disabled": true,
-              "tooltip": "Activity Fee for Change Subscriber Number",
-              "widget": "number"
-            }
-          ]
-        },
-        "submitDefault": false,
-        "subjects": {
-          "onSubmit": ["SM.CHANGECTN.SUBMIT"],
-          "submitEvent": "CHANGECTN.SUBMIT"
-        }
-      }
-    },
-    "payment-form": {
-      "type": "FormComponent",
-      "params": {
-        "layout": "horizontal",
-        "formMeta": {
-          "columns": 1,
-          "fields": [
-            {
-              "key": "firstName",
-              "label": "First Name",
-              "required": true
-            },
-            {
-              "key": "lastName",
-              "label": "Last Name",
-              "required": true
-            },
-            {
-              "key": "cardNumber",
-              "label": "Card Number",
-              "tooltip": "16 Digit Cerdit Card Number",
-              "widget": "number",
-              "required": true
-            },
-            {
-              "key": "cvv",
-              "label": "Security Code",
-              "tooltip": "3 or 4 Digit Security Code",
-              "widget": "number",
-              "required": true
-            },
-            {
-              "key": "expirationMonth",
-              "label": "Exp Month",
-              "tooltip": "Expiration Month",
-              "widget": "select",
-              "options": [
-                "01-JAN",
-                "02-FEB",
-                "03-MAR",
-                "04-APR",
-                "05-MAY",
-                "06-JUN",
-                "07-JUL",
-                "08-AUG",
-                "09-SEP",
-                "10-OCT",
-                "11-SEP",
-                "12-DEC"
-              ],
-              "required": true
-            },
-            {
-              "key": "expirationYear",
-              "label": "Exp Year",
-              "tooltip": "Expiration Year",
-              "widget": "select",
-              "options": [2020, 2021, 2022, 2023],
-              "required": true
-            },
-            {
-              "key": "cardZipCode",
-              "label": "Zip Code",
-              "tooltip": "Card Zip Code",
-              "widget": "number",
-              "required": true
-            },
-            {
-              "key": "amount",
-              "label": "Amount",
-              "tooltip": "Total Amount Charged for this service",
-              "widget": "number",
-              "required": true
-            }
-          ]
-        },
-        "submitDefault": false,
-        "subjects": {
-          "onSubmit": ["SM.CHANGECTN.PAYMENT"],
-          "submitEvent": "CHANGECTN.PAYMENT"
-        }
-      }
-    },
-    "confirmation": {
-      "type": "FormComponent",
-      "params": {
-        "layout": "horizontal",
-        "formMeta": {
-          "columns": 2,
-          "fields": [
-            {
-              "key": "carrier",
-              "label": "Replace This with a Confirmation Component",
-              "initialValue": "Replace this with a confirmation component",
-              "disabled": true
-            }
-          ]
-        },
-        "submitDefault": false,
-        "subjects": {
-          "onSubmit": ["SM.CHANGECTN.SUBMIT"],
-          "submitEvent": "CHANGECTN.SUBMIT"
-        }
+      "subjects": {
+        "onSubmit": ["SM.UNLOCK.DONE"],
+        "submitEvent": "UNLOCK.DONE"
       }
     }
   },
@@ -210,8 +37,8 @@
     "change-ctn": {
       "components": [
         {
-          "id": "change-ctn-stepper",
-          "ref": "change-ctn-stepper"
+          "id": "unlock-sim",
+          "ref": "unlock-sim"
         }
       ]
     }

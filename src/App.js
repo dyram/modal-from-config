@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import "./styles.css";
+import "./styles.less";
 import { MachineProvider } from "./MachineProvider";
 import { getComponentsForAppConfig } from "./Helper";
 
