@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Typography, Alert } from "antd";
+import { Button, Modal, Typography, Alert, Select } from "antd";
+import * as AntIcons from "@ant-design/icons";
 import { MessageBus } from "../MessageBus.js";
 import { getComponentForProps } from "../Helper";
 
@@ -11,6 +12,7 @@ export default function UnlockDeviceModal({ config }) {
     modalText,
     maskClosable,
     buttons,
+    data,
   } = config.params;
   const {
     hasIntermediary,
@@ -19,24 +21,31 @@ export default function UnlockDeviceModal({ config }) {
     intermediarySuccessMessage,
     intermediaryErrorMessage,
   } = config.params.intermediaryDetails;
+  const { triggerIcon, triggerText, size } = config.params.triggerDetails;
   const { Title, Text } = Typography;
+  const { Option } = Select;
 
   const [visible, setVisible] = useState(false);
   const [intermediaryDone, setIntermediaryDone] = useState(false);
   const [intermediaryError, setIntermediaryError] = useState(false);
+  const [selectedData, setSelectedData] = useState(undefined);
 
   const openModal = () => {
     setVisible(true);
   };
+
   const closeModal = () => {
     setVisible(false);
     setIntermediaryDone(false);
     setIntermediaryError(false);
+    setSelectedData(undefined);
   };
+
   const handleSubmit = () => {
     console.log("DONE");
     closeModal();
   };
+
   const intermediaryFn = () => {
     console.log("Code sent");
     setIntermediaryDone(true);
@@ -50,6 +59,11 @@ export default function UnlockDeviceModal({ config }) {
     let buttonNeeded = buttons.filter((obj) => obj.identifier === type);
     console.log(type, getComponentForProps("ButtonComponent", buttonNeeded[0]));
     return getComponentForProps("ButtonComponent", buttonNeeded[0]);
+  };
+
+  const getIcon = (iconName) => {
+    const IconSelected = AntIcons[iconName];
+    return <IconSelected />;
   };
 
   useEffect(() => {
@@ -72,8 +86,9 @@ export default function UnlockDeviceModal({ config }) {
 
   return (
     <>
-      <Button type="primary" onClick={openModal}>
-        Unlock Device
+      <Button type="primary" size={size} onClick={openModal}>
+        {getIcon(triggerIcon)}
+        {triggerText}
       </Button>
       <Modal
         title={<Title level={5}>{modalTitle}</Title>}
@@ -93,11 +108,35 @@ export default function UnlockDeviceModal({ config }) {
         <Text>{modalText}</Text>
         <br />
         <br />
+        {data.length > 0 && hasIntermediary && (
+          <Select
+            onChange={(e) => {
+              setSelectedData(e);
+            }}
+            placeholder="Select a phone number"
+            allowClear={true}
+            value={selectedData}
+          >
+            {data.map((options) => (
+              <Option value={options.payload}>{options.payload}</Option>
+            ))}
+          </Select>
+        )}
+        <br />
+        <br />
         {intermediaryDone && (
-          <Alert message={intermediarySuccessMessage} type="success" showIcon />
+          <Alert
+            message={`${intermediarySuccessMessage} ${selectedData}`}
+            type="success"
+            showIcon
+          />
         )}
         {intermediaryError && (
-          <Alert message={intermediaryErrorMessage} type="error" showIcon />
+          <Alert
+            message={`${intermediaryErrorMessage} ${selectedData}`}
+            type="error"
+            showIcon
+          />
         )}
       </Modal>
     </>

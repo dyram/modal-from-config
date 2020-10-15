@@ -3,12 +3,17 @@
     "unlock-sim": {
       "type": "UnlockModal",
       "params": {
+        "triggerDetails": {
+          "triggerIcon": "MobileOutlined",
+          "triggerText": "Unlock Device",
+          "size": "large"
+        },
         "intermediaryDetails": {
           "hasIntermediary": true,
           "intermediaryEvent": "UNLOCK.SENDCODE",
           "intermediaryEventName": "sendCode",
-          "intermediarySuccessMessage": "Code has been sent to your mobile 777-7777-7777",
-          "intermediaryErrorMessage": "Error has occured while sending code"
+          "intermediarySuccessMessage": "Code has been sent to your device",
+          "intermediaryErrorMessage": "Error has occured while sending code to"
         },
         "doneEvent": "UNLOCK.DONE",
         "doneSuccessMessage": "Instructions on how to change your sim has been sent to your registered number",
@@ -30,7 +35,7 @@
             "clickSub": ["UNLOCK.DONE"]
           }
         ],
-        "data": []
+        "data": [{ "payload": "777-7777-7777" }, { "payload": "888-8888-8888" }]
       },
       "subjects": {
         "onSubmit": ["SM.UNLOCK.DONE"],
