@@ -39,7 +39,7 @@
     }
   },
   "dashboards": {
-    "change-ctn": {
+    "unlock-sim": {
       "components": [
         {
           "id": "unlock-sim",
