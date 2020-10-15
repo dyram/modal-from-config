@@ -1,13 +1,17 @@
 {
   "components": {
     "unlock-sim": {
-      "type": "UnlockDeviceModal",
+      "type": "UnlockModal",
       "params": {
-        "hasIntermediary": true,
-        "intermediaryEvent": "UNLOCK.SENDCODE",
-        "intermediaryEventName": "sendCode",
-        "intermediarySuccessMessage": "Code has been sent to your mobile 777-7777-7777",
+        "intermediaryDetails": {
+          "hasIntermediary": true,
+          "intermediaryEvent": "UNLOCK.SENDCODE",
+          "intermediaryEventName": "sendCode",
+          "intermediarySuccessMessage": "Code has been sent to your mobile 777-7777-7777",
+          "intermediaryErrorMessage": "Error has occured while sending code"
+        },
         "doneEvent": "UNLOCK.DONE",
+        "doneSuccessMessage": "Instructions on how to change your sim has been sent to your registered number",
         "modalTitle": "Unlock Device",
         "modalText": "Are you sure you want to send a code to unlock your device?",
         "maskClosable": false,
@@ -25,7 +29,8 @@
             "name": "Done",
             "clickSub": ["UNLOCK.DONE"]
           }
-        ]
+        ],
+        "data": []
       },
       "subjects": {
         "onSubmit": ["SM.UNLOCK.DONE"],

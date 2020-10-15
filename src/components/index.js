@@ -1,6 +1,6 @@
 import { lazy } from "react";
 
 const ButtonComponent = lazy(() => import("./ButtonComponent"));
-const UnlockDeviceModal = lazy(() => import("./UnlockDeviceModal"));
+const UnlockModal = lazy(() => import("./UnlockModal"));
 
-export { ButtonComponent, UnlockDeviceModal };
+export { ButtonComponent, UnlockModal };

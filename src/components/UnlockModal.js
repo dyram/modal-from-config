@@ -6,20 +6,24 @@ import { getComponentForProps } from "../Helper";
 export default function UnlockDeviceModal({ config }) {
   const { id } = config;
   const {
-    hasIntermediary,
-    intermediaryEvent,
-    intermediaryEventName,
-    intermediarySuccessMessage,
     doneEvent,
     modalTitle,
     modalText,
     maskClosable,
     buttons,
   } = config.params;
+  const {
+    hasIntermediary,
+    intermediaryEvent,
+    intermediaryEventName,
+    intermediarySuccessMessage,
+    intermediaryErrorMessage,
+  } = config.params.intermediaryDetails;
   const { Title, Text } = Typography;
 
   const [visible, setVisible] = useState(false);
   const [intermediaryDone, setIntermediaryDone] = useState(false);
+  const [intermediaryError, setIntermediaryError] = useState(false);
 
   const openModal = () => {
     setVisible(true);
@@ -27,6 +31,7 @@ export default function UnlockDeviceModal({ config }) {
   const closeModal = () => {
     setVisible(false);
     setIntermediaryDone(false);
+    setIntermediaryError(false);
   };
   const handleSubmit = () => {
     console.log("DONE");
@@ -35,6 +40,10 @@ export default function UnlockDeviceModal({ config }) {
   const intermediaryFn = () => {
     console.log("Code sent");
     setIntermediaryDone(true);
+
+    // FOR ERROR CASE PUT THIS IN AN IF BLOCK
+    // setIntermediaryError(true);
+    // setIntermediaryDone(false);
   };
 
   const getButton = (type) => {
@@ -86,6 +95,9 @@ export default function UnlockDeviceModal({ config }) {
         <br />
         {intermediaryDone && (
           <Alert message={intermediarySuccessMessage} type="success" showIcon />
+        )}
+        {intermediaryError && (
+          <Alert message={intermediaryErrorMessage} type="error" showIcon />
         )}
       </Modal>
     </>
