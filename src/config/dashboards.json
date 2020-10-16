@@ -17,8 +17,8 @@
         },
         "doneEvent": "UNLOCK.DONE",
         "doneSuccessMessage": "Instructions on how to change your sim has been sent to your registered number",
-        "modalTitle": "Unlock Device",
-        "modalText": "Are you sure you want to send a code to unlock your device?",
+        "modalTitle": "Unlock SIM",
+        "modalText": "Are you sure you want to send a code to unlock your SIM?",
         "maskClosable": false,
         "okText": "Done",
         "buttons": [

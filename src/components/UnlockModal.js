@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Typography, Alert, Select } from "antd";
+import { Button, Modal, Typography, Alert, Select, Row, Col } from "antd";
 import * as AntIcons from "@ant-design/icons";
 import { MessageBus } from "../MessageBus.js";
 import { getComponentForProps } from "../Helper";
@@ -57,13 +57,12 @@ export default function UnlockDeviceModal({ config }) {
 
   const getButton = (type) => {
     let buttonNeeded = buttons.filter((obj) => obj.identifier === type);
-    console.log(type, getComponentForProps("ButtonComponent", buttonNeeded[0]));
     return getComponentForProps("ButtonComponent", buttonNeeded[0]);
   };
 
   const getIcon = (iconName) => {
     const IconSelected = AntIcons[iconName];
-    return <IconSelected />;
+    return <IconSelected style={{ fontSize: "xx-large" }} />;
   };
 
   useEffect(() => {
@@ -86,10 +85,18 @@ export default function UnlockDeviceModal({ config }) {
 
   return (
     <>
-      <Button type="primary" size={size} onClick={openModal}>
-        {getIcon(triggerIcon)}
-        {triggerText}
+      <Button
+        className="trigger-button"
+        type="ghost"
+        size={size}
+        onClick={openModal}
+      >
+        <Text strong>
+          {triggerText}
+          {getIcon(triggerIcon)}
+        </Text>
       </Button>
+
       <Modal
         title={<Title level={5}>{modalTitle}</Title>}
         visible={visible}
@@ -111,6 +118,8 @@ export default function UnlockDeviceModal({ config }) {
         {data.length > 0 && hasIntermediary && (
           <Select
             onChange={(e) => {
+              setIntermediaryDone(false);
+              setIntermediaryError(false);
               setSelectedData(e);
             }}
             placeholder="Select a phone number"
